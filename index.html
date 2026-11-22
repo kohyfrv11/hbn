@@ -3,116 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Днём Рождения, Настенька!</title>
+    <title>С ДНЁМ РОЖДЕНИЯ!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background-color: #0d0d1a;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 85, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .bg-heart {
+            position: absolute;
+            background-color: #ff0055;
+            box-shadow: 0 0 10px #ff0055;
+            opacity: 0.6;
+            animation: fall linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(105vh) rotate(360deg); }
+        }
+
+        .main-heart-container {
+            flex: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background: linear-gradient(135deg, #ffe6f2 0%, #ffcdd2 50%, #f8bbd0 100%);
-            position: relative;
+            width: 100%;
+            z-index: 1;
         }
-        .flower {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.4;
-            animation: float 6s ease-in-out infinite;
-            user-select: none;
+
+        .pixel-heart {
+            width: 70vw;
+            max-width: 500px;
+            height: auto;
+            fill: #ff0055;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 85, 0.8));
+            animation: pixel-beat 1s infinite steps(2); 
         }
-        .flower:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .flower:nth-child(2) { top: 20%; right: 15%; animation-delay: 1.5s; font-size: 3rem; }
-        .flower:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 3s; font-size: 2.5rem; }
-        .flower:nth-child(4) { bottom: 25%; right: 10%; animation-delay: 4.5s; }
-        .flower:nth-child(5) { top: 50%; left: 5%; animation-delay: 2s; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
+
+        @keyframes pixel-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
-        .container {
+
+        .greeting {
+            width: 100%;
+            background: rgba(13, 13, 26, 0.9);
+            border-top: 4px solid #ff0055;
+            padding: 25px 15px;
             text-align: center;
-            z-index: 10;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
-            max-width: 90%;
+            z-index: 1;
+            box-shadow: 0 -5px 30px rgba(255, 0, 85, 0.2);
         }
-        .heart {
-            position: relative;
-            width: 120px;
-            height: 110px;
-            margin: 0 auto 20px;
-            animation: heartbeat 1.2s infinite ease-in-out;
-        }
-        .heart::before,
-        .heart::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 60px;
-            height: 95px;
-            background: #ff1744;
-            border-radius: 60px 60px 0 0;
-        }
-        .heart::before {
-            left: 0;
-            transform: rotate(-45deg);
-            transform-origin: 100% 100%;
-        }
-        .heart::after {
-            right: 0;
-            transform: rotate(45deg);
-            transform-origin: 0 100%;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.3); }
-            70% { transform: scale(1); }
-        }
-        h1 {
-            color: #d81b60;
-            font-size: 2rem;
+
+        .greeting h1 {
+            color: #00ffcc;
+            font-size: 1.2rem;
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            text-shadow: 3px 3px 0 #000;
+            line-height: 1.5;
         }
-        p {
-            color: #880e4f;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            font-weight: 500;
+
+        .greeting p {
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            text-shadow: 2px 2px 0 #000;
         }
+
         @media (max-width: 480px) {
-            .heart { width: 90px; height: 80px; }
-            .heart::before, .heart::after { width: 45px; height: 70px; }
-            h1 { font-size: 1.6rem; }
-            p { font-size: 1rem; }
-            .flower { font-size: 1.5rem; }
+            .greeting h1 { font-size: 0.9rem; }
+            .greeting p { font-size: 0.65rem; }
+            .pixel-heart { width: 80vw; }
         }
     </style>
 </head>
 <body>
-    <div class="flower">🌸</div>
-    <div class="flower">🌺</div>
-    <div class="flower">🌷</div>
-    <div class="flower">🌼</div>
-    <div class="flower">🌻</div>
 
-    <div class="container">
-        <div class="heart"></div>
-        <h1>С Днём Рождения, Настенька! 🎉</h1>
-        <p>
-            Пусть у тебя всё будет хорошо!!! <br>
-            Море счастья, цветов и улыбок!<br>
-            Ты - самая лучшая! ❤️
-        </p>
+    <div class="main-heart-container">
+        <svg class="pixel-heart" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 2h2v2h1v2h2V4h1V2h2v2h2v4h-1v2h-1v2h-1v2h-1v2H9v-2H8v-2H7v-2H6V8H5V6H4V2z" />
+            <path d="M1 4h3v2h1v2h1v2h1v2h1v2h2v-2h1v-2h1v-2h1V8h1V6h1V4h-3v2h-1v2h-1v2h-1v2h-1v-2h-1V8H7V6H6V4H1z" />
+            <path d="M4 2h2v2h1v2h1V6h1V4h1V2h2v2h2v4h-1v2h-1v2h-1v2h-1v2H9v-2H8v-2H7v-2H6V8H5V6H4V4H3V2h1z" />
+            <path d="M2 2h2v2h1v2h1v2h1v2h1v2h2v-2h1v-2h1V8h1V6h1V4h1V2h-2v2h-1v2h-1v2h-1v2h-1V8H9V6H8V4H7V2H2z" />
+        </svg>
     </div>
+
+    <div class="greeting">
+        <h1>ТЫ - САМАЯ ЛУЧШАЯ!</h1>
+        <p>С ДНЁМ РОЖДЕНИЯ, ЛЮБИМКА ❤️</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            const size = Math.random() * 10 + 4;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.left = `${Math.random() * 100}vw`;
+            const duration = Math.random() * 4 + 3;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.animationDelay = `-${Math.random() * 5}s`;
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        setInterval(createHeart, 150);
+    </script>
 </body>
 </html>
